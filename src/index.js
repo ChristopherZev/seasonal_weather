@@ -20,16 +20,51 @@ import ShowSeason from './ShowSeason'
 //5.State need to be initilized when a component is created
 //6.State can ONLY be updated using the function 'setState'!!!!
 
+
+//Constructor() method-------------------------------------------
+//This is JS specific method and will run first in any instance of
+//the component that it is in. In this exmaple it is the App comp.
+// unlike the render() method that is React specific. 
+//When defining the constructor() it is called with the props object
+//as an argument.
+
+//Super() function------------------------------------------------
+//The super() func comes from the React.component class which has its
+//own constructor so when we use the constructor()method we are replacing
+//the original constructor, however we still want to use the setup code
+//within the constructor in the base class so we use super(props);
+
+
 class App extends React.Component {
+	constructor(props){
+		super(props);
+		//To create state we need create the constructor as seen above
+		//then call super(props); and since we are looking to work with 
+		//the Latitude  we need to assign this.state to the {lat:null}
+		//object, null is just a placeholder to say we do not yet know 
+		//the Lat. 
+		//***This allows this.state to be called from any func within the App Comp.
+		//***This is the only time to direct assing only within the constructor
+		this.state = {lat: null};
+
+		window.navigator.geolocation.getCurrentPosition(
+			(position) => {
+				//We called the setState func to update the state.
+				//This is the only way to update the state
+				this.setState({lat:position.coords.latitude});
+			},
+			(err) => console.log(err)
+			
+		);
+	}
+	
+	//React says we have to define render!!!!
 	render() {
 		
-		window.navigator.geolocation.getCurrentPosition(
-			(position) => console.log(position),
-			(err) => console.log(err)
-		);
 		return(
-			<div> Latitude:
+			<div> Latitude:{this.state.lat}
 				<ShowSeason/>
+			
 			</div>
 		);
 	}
