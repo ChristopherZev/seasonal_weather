@@ -44,31 +44,49 @@ class App extends React.Component {
 		//object, null is just a placeholder to say we do not yet know 
 		//the Lat. 
 		//***This allows this.state to be called from any func within the App Comp.
-		//***This is the only time to direct assing only within the constructor
-		this.state = {lat: null};
+		//***This is the only time to direct assign only within the constructor
+		this.state = {lat: null, errorMes:''};
 
 		window.navigator.geolocation.getCurrentPosition(
+			//position and err are callback funcs, they produce the 
+			//lat from getCurrentPosition if found or  an error if not found
 			(position) => {
 				//We called the setState func to update the state.
 				//This is the only way to update the state
 				this.setState({lat:position.coords.latitude});
 			},
-			(err) => console.log(err)
-			
+			(err) => {
+				this.setState({errorMes: err.message});
+			}
 		);
 	}
 	
 	//React says we have to define render!!!!
 	render() {
+		//Below are exmaples of *****conditional rendering*****
+		//if statements to display error, the lat, or loading
+		//depending on if the condition is met.
+		if(this.state.errorMes && !this.state.lat){
+			return(
+				<div>Error: {this.state.errorMes} </div>
+			);
+		}
 		
+		if(this.state.lat && !this.state.errorMes){
+			return(
+				<div>Latitude: {this.state.lat}
+					<ShowSeason />
+				</div>
+				
+			);
+		}
+		//No need for else...
 		return(
-			<div> Latitude:{this.state.lat}
-				<ShowSeason/>
-			
-			</div>
+			<div>Loading...</div>
 		);
 	}
 }
+
 
 
 ReactDOM.render(
