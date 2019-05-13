@@ -34,7 +34,25 @@ import ShowSeason from './ShowSeason'
 //the original constructor, however we still want to use the setup code
 //within the constructor in the base class so we use super(props);
 
+/*/
+Component Lifecycle
+	constructor() - good place to do one time setup
+	render() - Avoid doing anything besides returning JSX
+	
+		***content becomes visible on screen***
+	
+	componentDidMount() - good place to do data loading
 
+		***sit and wait for updates...***
+
+	componentDidUpdate() - good place to do more data loading when
+						 state/props change
+
+		***sit and wait until this component is no longer shown***
+
+	componentWillUnmount() - good place to do cleanup (especially for
+							 non-React stuff)
+*/
 class App extends React.Component {
 	constructor(props){
 		super(props);
@@ -59,6 +77,14 @@ class App extends React.Component {
 				this.setState({errorMes: err.message});
 			}
 		);
+	}
+//ComponetnDidMount() and componentDidUpdate()-------------------
+//
+	componentDidMount(){
+		console.log('My component rendered!')
+	}
+	componentDidUpdate(){
+		console.log('My component was updated! rerender')
 	}
 	
 	//React says we have to define render!!!!
