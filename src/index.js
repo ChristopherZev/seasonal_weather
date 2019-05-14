@@ -90,8 +90,10 @@ class App extends React.Component {
 	//trasnpiling the constructor for us. 	
 	state = {lat: null, errorMes: ''};
 
-//ComponetnDidMount() and componentDidUpdate()-------------------
-//
+//ComponentDidMount() and componentDidUpdate()-------------------
+//ComponentDidMount() gets called the first time the content is 
+//displayed on the screen. Every time the state is updated by 
+//setState the componentDidUpdate gets called 
 	componentDidMount(){
 		window.navigator.geolocation.getCurrentPosition(
 			//position and err are callback funcs, they produce the 
