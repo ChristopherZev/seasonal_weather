@@ -10,9 +10,9 @@ import React from 'react';
 //the month and what hemisphere the user is in(from the lat)
 const getSeason = (lat, month) => {
 	if (month > 2 && month <9){
-		return lat >9 ? 'summer' : 'winter';
+		return lat > 0 ? 'summer' : 'winter';
 	} else{
-		return lat >0 ? 'winter' : 'summer';
+		return lat > 0 ? 'winter' : 'summer';
 	}
 }
 
@@ -31,12 +31,13 @@ const ShowSeason = (props) => {
 	//This passes in the values of needed
 	const season = getSeason(props.lat, new Date().getMonth());
 
-	console.log(season);
+	const text = season === 'winter' ? "Baby it's cold outside!" : 
+							"Let's go to the beach!"
+
 	return(
 		//this line tests that the prop lat works within ShowSeason
-		<div> Since your lattitude  is: {props.lat}.
-			<br/> 
-			Your season is: {season}
+		<div> 
+			<h1>{text}</h1>
 		</div>
 	);
 };
