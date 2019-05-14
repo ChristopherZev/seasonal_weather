@@ -33,11 +33,14 @@ const ShowSeason = (props) => {
 
 	const text = season === 'winter' ? "Baby it's cold outside!" : 
 							"Let's go to the beach!"
+	const icon = season === 'winter' ? 'snowflake' : 'hotjar';
 
 	return(
-		//this line tests that the prop lat works within ShowSeason
+		
 		<div> 
+			<i className={`${icon} icon`}/>
 			<h1>{text}</h1>
+			<i className={`${icon} icon`}/>
 		</div>
 	);
 };
