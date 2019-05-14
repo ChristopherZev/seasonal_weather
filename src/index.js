@@ -129,7 +129,8 @@ class App extends React.Component {
 		}
 		//No need for else...
 		return(
-			<Loader />
+			//Made the loadMes prop with a default.props to display text
+			<Loader loadMes="Please accept the location request..."/>
 		);
 	}
 }
