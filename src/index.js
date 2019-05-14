@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ShowSeason from './ShowSeason'
+import ShowSeason from './ShowSeason';
+import Loader from './Loader';
 
 //Class based components----------------------------------------
 //class App is an exmaple of class based component. The App Class
@@ -128,7 +129,7 @@ class App extends React.Component {
 		}
 		//No need for else...
 		return(
-			<div>Loading...</div>
+			<Loader />
 		);
 	}
 }
