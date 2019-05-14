@@ -1,3 +1,7 @@
+//Webpack will see we are importing a css file, it will then take
+//the contents of the css file and and place them within the 
+//index.html file, a css import must place before the react import
+import './ShowSeason.css';
 import React from 'react';
 
 //Made the seasonConfig object to store the summer and winter object
@@ -9,7 +13,7 @@ const seasonConfig = {
 	},
 	winter:{
 		text: "Baby it's cold outside",
-		iconName: 'snowflake outline'
+		iconName: 'snowflake'
 	}
 };
 
@@ -49,10 +53,10 @@ const ShowSeason = (props) => {
 
 	return(
 		
-		<div> 
-			<i className={`${iconName} icon`}/>
-			<h1>{text}</h1>
-			<i className={`${iconName} icon`}/>
+		<div className={`show-season ${season}`}> 
+			<i className={`icon-left massive ${iconName} icon`}/>
+			<h1> {text}</h1>
+			<i className={`icon-right massive ${iconName} icon`}/>
 		</div>
 	);
 };
