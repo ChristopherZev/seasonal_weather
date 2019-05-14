@@ -1,5 +1,17 @@
 import React from 'react';
 
+//Made the seasonConfig object to store the summer and winter object
+//values, text and iconName 
+const seasonConfig = {
+	summer:{
+		text: "Let's go to the beach!",
+		iconName: 'hotjar'
+	},
+	winter:{
+		text: "Baby it's cold outside",
+		iconName: 'snowflake outline'
+	}
+};
 
 //The getSeason() func is created to reduce amount of logic
 //within the functional comp.
@@ -14,7 +26,7 @@ const getSeason = (lat, month) => {
 	} else{
 		return lat > 0 ? 'winter' : 'summer';
 	}
-}
+};
 
 //Created ShowSeason comp. to display seasons based
 //on user location and time of year.
@@ -30,17 +42,17 @@ const ShowSeason = (props) => {
 	//props.lat, and the month from new Date().getmonth().
 	//This passes in the values of needed
 	const season = getSeason(props.lat, new Date().getMonth());
-
-	const text = season === 'winter' ? "Baby it's cold outside!" : 
-							"Let's go to the beach!"
-	const icon = season === 'winter' ? 'snowflake' : 'hotjar';
+	//Here I destructure out the values text and iconName from
+	//seasonConfig at season to be used by iconName below for 
+	//the same functionality as the previous verbose ternary operations
+	const {text, iconName } = seasonConfig[season];
 
 	return(
 		
 		<div> 
-			<i className={`${icon} icon`}/>
+			<i className={`${iconName} icon`}/>
 			<h1>{text}</h1>
-			<i className={`${icon} icon`}/>
+			<i className={`${iconName} icon`}/>
 		</div>
 	);
 };
