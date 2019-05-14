@@ -117,10 +117,13 @@ class App extends React.Component {
 		
 		if(this.state.lat && !this.state.errorMes){
 			return(
-				<div>Latitude: {this.state.lat}
-					<ShowSeason />
-				</div>
-				
+				//This line sets a prop by assigning the state to 
+				// lat. We are passing the state as a prop from the
+				//parent comp(App) to the child comp.(ShowSeason) 
+				//This will link ShowSeason and the App comp together
+				//Any time the state is updated via setState now the
+				//state within ShowSeason will also be updated.
+				<ShowSeason lat={this.state.lat}/>
 			);
 		}
 		//No need for else...
