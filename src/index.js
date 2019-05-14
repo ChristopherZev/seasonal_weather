@@ -54,6 +54,10 @@ Component Lifecycle
 							 non-React stuff)
 */
 class App extends React.Component {
+/*	***Using a constructor is only one way to initilaize the state.
+	another way to to do this is by setting state = {}; thus not
+	needing the constructor***
+------------------------------------------------------------------
 	constructor(props){
 		super(props);
 		//To create state we need create the constructor as seen above
@@ -78,14 +82,27 @@ class App extends React.Component {
 			}
 		);
 	}
+------------------------------------------------------------------	
+*/
+	//This line replaced the constructor as a way of intializing
+	//the state for this component. This is done thanks to Babel
+	//trasnpiling the constructor for us. 	
+	state = {lat: null, errorMes: ''};
+
 //ComponetnDidMount() and componentDidUpdate()-------------------
 //
 	componentDidMount(){
-		console.log('My component rendered!')
+		window.navigator.geolocation.getCurrentPosition(
+			//position and err are callback funcs, they produce the 
+			//lat from getCurrentPosition if found or  an error if not found
+			
+			//We called the setState func to update the state.
+			//This is the only way to update the state
+			position => this.setState({lat:position.coords.latitude}),
+			err => this.setState({errorMes: err.message})
+		);
 	}
-	componentDidUpdate(){
-		console.log('My component was updated! rerender')
-	}
+
 	
 	//React says we have to define render!!!!
 	render() {
