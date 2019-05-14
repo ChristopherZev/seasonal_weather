@@ -104,9 +104,13 @@ class App extends React.Component {
 		);
 	}
 
-	
-	//React says we have to define render!!!!
-	render() {
+
+	//Helper method renderContent() helps the developer avoid having
+	//many conditional logic statements within the render() method
+	//Having all the conditionals with a helper method allows the dev
+	//to still wrap all conditions with a common element by calling 
+	//the helper function i.e. {this.renderConten()} 
+	renderContent() {
 		//Below are exmaples of *****conditional rendering*****
 		//if statements to display error, the lat, or loading
 		//depending on if the condition is met.
@@ -134,6 +138,18 @@ class App extends React.Component {
 		);
 	}
 }
+	
+	//React says we have to define render!!!!
+	render() {
+		return(
+			//Example of calling a helper function with conditional
+			//rendering and wrapping it with a common element to target
+			//all conditions
+			<div className="border red">
+				{this.renderContent()}
+			</div>
+		);
+	}
 
 
 
